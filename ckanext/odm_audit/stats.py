@@ -26,11 +26,24 @@ class Stats(object):
     def private_packages(cls, limit=10):
       package = table('package')
 
-      s = select([package.c.id], from_obj=[package]).\
-          where(package.c.private==True).\
-          limit(limit)
+      s = select([package.c.id,package.c.type], from_obj=[package]).\
+          where(package.c.private==True)
+
       res_ids = model.Session.execute(s).fetchall()
-      res_pkgs = [model.Session.query(model.Package).get(unicode(pkg_id[0])) for pkg_id in res_ids]
+      res_pkgs = [(model.Session.query(model.Package).get(unicode(pkg_id)),pkg_type) for pkg_id, pkg_type in res_ids]
+      return res_pkgs
+
+    @classmethod
+    def records_by_type(cls, limit=10):
+      package = table('package')
+
+      s = select([func.count(package.c.id),package.c.type], from_obj=[package]).\
+          group_by(package.c.type).\
+          order_by(func.count(package.c.id).desc())
+
+      res_ids = model.Session.execute(s).fetchall()
+      res_pkgs = [(pkg_count,pkg_type) for pkg_count, pkg_type in res_ids]
+      print(res_pkgs)
       return res_pkgs
 
 class RevisionStats(object):

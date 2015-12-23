@@ -10,6 +10,7 @@ class AuditController(BaseController):
         stats = stats_lib.Stats()
         rev_stats = stats_lib.RevisionStats()
         c.private_packages = stats.private_packages()
+        c.records_by_type = stats.records_by_type()
 
         # Used in new CKAN templates gives more control to the templates for formatting.
         c.raw_packages_by_week = []

@@ -14,12 +14,38 @@
           <thead>
             <tr>
               <th>{{ _('Dataset') }}</th>
+							<th>{{ _('Type') }}</th>
             </tr>
           </thead>
           <tbody>
-            {% for package in c.private_packages %}
+            {% for package, pkg_type in c.private_packages %}
               <tr py:for="package in c.private_packages">
                 <td>{{ h.link_to(package.title or package.name, h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}</td>
+								<td>{{ pkg_type }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="empty">{{ _('No private datasets') }}</p>
+      {% endif %}
+    </section>
+
+		<section id="stats-records-by-type" class="module-content tab-content">
+      <h2>{{ _('Records by type') }}</h2>
+      {% if c.records_by_type %}
+        <table class="table table-chunky table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>{{ _('Type of record') }}</th>
+              <th>{{ _('Number') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for pkg_count, pkg_type in c.records_by_type %}
+              <tr py:for="package in c.private_packages">
+                <td>{{ pkg_type }}</td>
+								<td>{{ pkg_count }}</td>
               </tr>
             {% endfor %}
           </tbody>
@@ -38,6 +64,7 @@
     <nav data-module="stats-nav">
       <ul class="unstyled nav nav-simple">
         <li class="nav-item"><a href="#stats-private" data-toggle="tab">{{ _('Privates Datasets') }}</a></li>
+				<li class="nav-item"><a href="#stats-records-by-type" data-toggle="tab">{{ _('# records by type') }}</a></li>
       </ul>
     </nav>
   </section>
