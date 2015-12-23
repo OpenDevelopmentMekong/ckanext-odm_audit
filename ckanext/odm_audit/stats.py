@@ -6,11 +6,11 @@ from sqlalchemy import Table, select, join, func, and_
 import ckan.plugins as p
 import ckan.model as model
 
-cache_enabled = p.toolkit.asbool(config.get('ckanext.stats.cache_enabled', 'True'))
+cache_enabled = p.toolkit.asbool(config.get('ckanext.odm_audit.cache_enabled', 'True'))
 
 if cache_enabled:
     from pylons import cache
-    our_cache = cache.get_cache('stats', type='dbm')
+    our_cache = cache.get_cache('odm_audit', type='dbm')
 
 DATE_FORMAT = '%Y-%m-%d'
 
@@ -24,14 +24,14 @@ class Stats(object):
 
     @classmethod
     def private_packages(cls, limit=10):
-        package = table('package')
+      package = table('package')
 
-        s = select([package.c.id,package.c.name], from_obj=[package]).\
-            where(package.c.private==True)
-        res_ids = model.Session.execute(s).fetchall()
-        res_pkgs = [(model.Session.query(model.Package).get(unicode(pkg_id)), val) for pkg_id, val in res_ids]
-        return res_pkgs
-
+      s = select([package.c.id], from_obj=[package]).\
+          where(package.c.private==True).\
+          limit(limit)
+      res_ids = model.Session.execute(s).fetchall()
+      res_pkgs = [model.Session.query(model.Package).get(unicode(pkg_id[0])) for pkg_id in res_ids]
+      return res_pkgs
 
 class RevisionStats(object):
     @classmethod
