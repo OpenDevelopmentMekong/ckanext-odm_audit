@@ -14,6 +14,7 @@ class AuditController(BaseController):
         c.records_by_type = stats.records_by_type()
         c.records_by_copyright = stats.records_by_copyright()
         c.records_missing_spatial_range = stats.records_missing_spatial_range()
+        c.records_missing_copyright = stats.records_missing_copyright()
         c.datasets_missing_mandatory_fields = stats.datasets_missing_mandatory_fields()
         c.library_records_missing_mandatory_fields = stats.library_records_missing_mandatory_fields()
         c.laws_records_missing_mandatory_fields = stats.laws_records_missing_mandatory_fields()

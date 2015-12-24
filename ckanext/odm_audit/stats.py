@@ -82,6 +82,23 @@ class Stats(object):
     return res_pkgs
 
   @classmethod
+  def records_missing_copyright(cls, limit=10000):
+
+    s = """SELECT package.id FROM package
+           WHERE package.id not in (
+            SELECT distinct p.id FROM package p
+            JOIN package_extra pe ON p.id = pe.package_id
+            and pe.key = 'odm_copyright'
+           )
+           GROUP BY package.id
+           LIMIT %(limit)s""" % {'limit': limit}
+
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(model.Session.query(model.Package).get(
+        unicode(pkg_id[0]))) for pkg_id in res_ids]
+    return res_pkgs
+
+  @classmethod
   def datasets_missing_mandatory_fields(cls, limit=10000):
 
     s = """SELECT package.id FROM package
@@ -146,7 +163,6 @@ class Stats(object):
     res_ids = model.Session.execute(s).fetchall()
     res_pkgs = [(pkg_count, value) for pkg_count, value in res_ids]
     return res_pkgs
-
 
 class RevisionStats(object):
 
