@@ -42,9 +42,9 @@ class Stats(object):
   @classmethod
   def private_packages_by_type(cls, limit=10000):
 
-    s = """SELECT count(package.id), package.type FROM package
-           WHERE package.private = true
-           GROUP BY package.type
+    s = """SELECT count(p.id) as pkg_count, p.type as pkg_type FROM package p
+           WHERE p.private = true
+           GROUP BY p.type
            LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
@@ -66,8 +66,6 @@ class Stats(object):
 
   @classmethod
   def records_missing_spatial_range(cls, limit=10000):
-    package = table('package')
-    extra = table('package_extra')
 
     s = """SELECT package.id FROM package
            WHERE package.id not in (
@@ -85,8 +83,6 @@ class Stats(object):
 
   @classmethod
   def datasets_missing_mandatory_fields(cls, limit=10000):
-    package = table('package')
-    extra = table('package_extra')
 
     s = """SELECT package.id FROM package
            WHERE package.type = 'dataset'
@@ -105,8 +101,6 @@ class Stats(object):
 
   @classmethod
   def library_records_missing_mandatory_fields(cls, limit=10000):
-    package = table('package')
-    extra = table('package_extra')
 
     s = """SELECT package.id FROM package
            WHERE package.type = 'library_record'
@@ -125,8 +119,6 @@ class Stats(object):
 
   @classmethod
   def laws_records_missing_mandatory_fields(cls, limit=10000):
-    package = table('package')
-    extra = table('package_extra')
 
     s = """SELECT package.id FROM package
            WHERE package.type = 'laws_record'
