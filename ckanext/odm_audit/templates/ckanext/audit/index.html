@@ -79,6 +79,30 @@
       {% endif %}
     </section>
 
+		<section id="stats-records-by-copyright" class="module-content tab-content">
+      <h2>{{ _('Records by copyright') }}</h2>
+      {% if c.records_by_copyright %}
+        <table class="table table-chunky table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>{{ _('Copyright') }}</th>
+              <th>{{ _('Number') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for pkg_count, value in c.records_by_copyright %}
+              <tr py:for="value in c.records_by_copyright">
+                <td>{{ h.link_to(pkg_type, h.url_for(controller='package', type=pkg_type, action='search', extra_odm_copyright=value)) }}</td>
+								<td>{{ pkg_count }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="empty">{{ _('No private datasets') }}</p>
+      {% endif %}
+    </section>
+
 		<section id="stats-records-missing-spatial-range" class="module-content tab-content">
       <h2>{{ _('Records mising spatial range') }}</h2>
       {% if c.records_missing_spatial_range %}
@@ -186,6 +210,7 @@
         <li class="nav-item"><a href="#stats-private" data-toggle="tab">{{ _('Private record') }}</a></li>
 				<li class="nav-item"><a href="#stats-private-by-type" data-toggle="tab">{{ _('Private records by type') }}</a></li>
 				<li class="nav-item"><a href="#stats-records-by-type" data-toggle="tab">{{ _('# Records by type') }}</a></li>
+				<li class="nav-item"><a href="#stats-records-by-copyright" data-toggle="tab">{{ _('# Records by copyright') }}</a></li>
 				<li class="nav-item"><a href="#stats-records-missing-spatial-range" data-toggle="tab">{{ _('Records missing spatial range') }}</a></li>
 				<li class="nav-item"><a href="#stats-datasets-missing-mandatory-fields" data-toggle="tab">{{ _('Datasets missing mandatory fields') }}</a></li>
 				<li class="nav-item"><a href="#stats-library-records-missing-mandatory-fields" data-toggle="tab">{{ _('Library records missing mandatory fields') }}</a></li>

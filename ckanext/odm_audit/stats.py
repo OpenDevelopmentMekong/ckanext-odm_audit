@@ -125,13 +125,26 @@ class Stats(object):
            AND package.id not in (
             SELECT distinct p.id FROM package p
             JOIN package_extra pe ON p.id = pe.package_id
-            and pe.key in ('odm_language','taxonomy','odm_document_type','odm_laws_status','odm_date_uploaded','odm_spatial_range')
+            WHERE pe.key in ('odm_language','taxonomy','odm_document_type','odm_laws_status','odm_date_uploaded','odm_spatial_range')
            )
            LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
     res_pkgs = [(model.Session.query(model.Package).get(
         unicode(pkg_id[0]))) for pkg_id in res_ids]
+    return res_pkgs
+
+  @classmethod
+  def records_by_copyright(cls, limit=10000):
+
+    s = """SELECT count(p.id) as pkg_count, pe.value as value FROM package p
+          JOIN package_extra pe ON p.id = pe.package_id
+          WHERE pe.key = 'odm_copyright'
+          GROUP BY value
+          LIMIT %(limit)s""" % {'limit': limit}
+
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(pkg_count, value) for pkg_count, value in res_ids]
     return res_pkgs
 
 
