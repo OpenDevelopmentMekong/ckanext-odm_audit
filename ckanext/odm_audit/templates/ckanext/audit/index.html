@@ -92,7 +92,7 @@
           <tbody>
             {% for pkg_count, value in c.records_by_copyright %}
               <tr py:for="value in c.records_by_copyright">
-                <td>{{ h.link_to(value, h.url_for(controller='package', type=value, action='search', extras_odm_copyright=value)) }}</td>
+                <td>{{ h.link_to(value, h.url_for(controller='package', action='search', extras_odm_copyright=value)) }}</td>
 								<td>{{ pkg_count }}</td>
               </tr>
             {% endfor %}
