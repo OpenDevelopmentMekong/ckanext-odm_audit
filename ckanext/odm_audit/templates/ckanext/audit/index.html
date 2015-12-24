@@ -75,7 +75,79 @@
           </tbody>
         </table>
       {% else %}
-        <p class="empty">{{ _('No private datasets') }}</p>
+        <p class="empty">{{ _('No datasets missing odm_spatial_range field') }}</p>
+      {% endif %}
+    </section>
+
+		<section id="stats-datasets-missing-mandatory-fields" class="module-content tab-content">
+      <h2>{{ _('Datasets mising mandatory fields') }}</h2>
+      {% if c.datasets_missing_mandatory_fields %}
+        <table class="table table-chunky table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>{{ _('Record') }}</th>
+							<th>{{ _('Type') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+          	{% for package in c.datasets_missing_mandatory_fields %}
+              <tr py:for="package in c.private_packages">
+                <td>{{ h.link_to(package.title or package.name, h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}</td>
+								<td>{{ package.type }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="empty">{{ _('No datasets missing mandatory fields') }}</p>
+      {% endif %}
+    </section>
+
+		<section id="stats-library-records-missing-mandatory-fields" class="module-content tab-content">
+      <h2>{{ _('Library records mising mandatory fields') }}</h2>
+      {% if c.library_records_missing_mandatory_fields %}
+        <table class="table table-chunky table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>{{ _('Record') }}</th>
+							<th>{{ _('Type') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+          	{% for package in c.library_records_missing_mandatory_fields %}
+              <tr py:for="package in c.private_packages">
+                <td>{{ h.link_to(package.title or package.name, h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}</td>
+								<td>{{ package.type }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="empty">{{ _('No library records missing mandatory fields') }}</p>
+      {% endif %}
+    </section>
+
+		<section id="stats-laws-records-missing-mandatory-fields" class="module-content tab-content">
+      <h2>{{ _('Laws records mising mandatory fields') }}</h2>
+      {% if c.laws_records_missing_mandatory_fields %}
+        <table class="table table-chunky table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>{{ _('Record') }}</th>
+							<th>{{ _('Type') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+          	{% for package in c.laws_records_missing_mandatory_fields %}
+              <tr py:for="package in c.private_packages">
+                <td>{{ h.link_to(package.title or package.name, h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}</td>
+								<td>{{ package.type }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="empty">{{ _('No laws records missing mandatory fields') }}</p>
       {% endif %}
     </section>
 
@@ -90,6 +162,9 @@
         <li class="nav-item"><a href="#stats-private" data-toggle="tab">{{ _('Privates Datasets') }}</a></li>
 				<li class="nav-item"><a href="#stats-records-by-type" data-toggle="tab">{{ _('# records by type') }}</a></li>
 				<li class="nav-item"><a href="#stats-records-missing-spatial-range" data-toggle="tab">{{ _('Records missing spatial range') }}</a></li>
+				<li class="nav-item"><a href="#stats-datasets-missing-mandatory-fields" data-toggle="tab">{{ _('Datasets missing mandatory fields') }}</a></li>
+				<li class="nav-item"><a href="#stats-library-records-missing-mandatory-fields" data-toggle="tab">{{ _('Library records missing mandatory fields') }}</a></li>
+				<li class="nav-item"><a href="#stats-laws-records-missing-mandatory-fields" data-toggle="tab">{{ _('Laws records missing mandatory fields') }}</a></li>
       </ul>
     </nav>
   </section>

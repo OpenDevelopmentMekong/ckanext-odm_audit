@@ -61,12 +61,69 @@ class Stats(object):
            WHERE package.id not in (
             SELECT distinct p.id FROM package p
             JOIN package_extra pe ON p.id = pe.package_id
-            WHERE pe.key = 'odm_spatial_range'
+            and pe.key = 'odm_spatial_range'
            )
            GROUP BY package.id
-           LIMIT 100"""
+           LIMIT %(limit)s""" % {'limit': limit}
 
-    print(s)
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(model.Session.query(model.Package).get(
+        unicode(pkg_id[0]))) for pkg_id in res_ids]
+    return res_pkgs
+
+  @classmethod
+  def datasets_missing_mandatory_fields(cls, limit=10000):
+    package = table('package')
+    extra = table('package_extra')
+
+    s = """SELECT package.id FROM package
+           WHERE package.type = 'dataset'
+           AND package.id not in (
+            SELECT distinct p.id FROM package p
+            JOIN package_extra pe ON p.id = pe.package_id
+            WHERE p.version != ''
+            and pe.key in ('odm_language','taxonomy','odm_date_created','odm_date_uploaded','odm_spatial_range','odm_process','odm_source')
+           )
+           LIMIT %(limit)s""" % {'limit': limit}
+
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(model.Session.query(model.Package).get(
+        unicode(pkg_id[0]))) for pkg_id in res_ids]
+    return res_pkgs
+
+  @classmethod
+  def library_records_missing_mandatory_fields(cls, limit=10000):
+    package = table('package')
+    extra = table('package_extra')
+
+    s = """SELECT package.id FROM package
+           WHERE package.type = 'library_record'
+           AND package.id not in (
+            SELECT distinct p.id FROM package p
+            JOIN package_extra pe ON p.id = pe.package_id
+            WHERE p.version != ''
+            and pe.key in ('odm_language','taxonomy','document_type','odm_date_uploaded','odm_spatial_range')
+           )
+           LIMIT %(limit)s""" % {'limit': limit}
+
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(model.Session.query(model.Package).get(
+        unicode(pkg_id[0]))) for pkg_id in res_ids]
+    return res_pkgs
+
+  @classmethod
+  def laws_records_missing_mandatory_fields(cls, limit=10000):
+    package = table('package')
+    extra = table('package_extra')
+
+    s = """SELECT package.id FROM package
+           WHERE package.type = 'laws_record'
+           AND package.id not in (
+            SELECT distinct p.id FROM package p
+            JOIN package_extra pe ON p.id = pe.package_id
+            and pe.key in ('odm_language','taxonomy','odm_document_type','odm_laws_status','odm_date_uploaded','odm_spatial_range')
+           )
+           LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
     res_pkgs = [(model.Session.query(model.Package).get(
