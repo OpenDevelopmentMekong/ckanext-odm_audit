@@ -1,3 +1,3 @@
 recursive-include ckanext/odm_audit/public *
 recursive-include ckanext/odm_audit/templates *
-recursive-include ckanext *.html *.json
+recursive-include ckanext *.html
