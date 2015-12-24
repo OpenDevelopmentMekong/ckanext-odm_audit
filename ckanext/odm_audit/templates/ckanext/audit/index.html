@@ -44,8 +44,32 @@
           <tbody>
             {% for pkg_count, pkg_type in c.records_by_type %}
               <tr py:for="package in c.private_packages">
-                <td>{{ pkg_type }}</td>
+                <td>{{ h.link_to(pkg_type, h.url_for(controller='package', type=pkg_type, action='search')) }}</td>
 								<td>{{ pkg_count }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="empty">{{ _('No private datasets') }}</p>
+      {% endif %}
+    </section>
+
+		<section id="stats-records-missing-spatial-range" class="module-content tab-content">
+      <h2>{{ _('Records mising spatial range') }}</h2>
+      {% if c.records_missing_spatial_range %}
+        <table class="table table-chunky table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>{{ _('Record') }}</th>
+							<th>{{ _('Type') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+          	{% for package in c.records_missing_spatial_range %}
+              <tr py:for="package in c.private_packages">
+                <td>{{ h.link_to(package.title or package.name, h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}</td>
+								<td>{{ package.type }}</td>
               </tr>
             {% endfor %}
           </tbody>
@@ -65,6 +89,7 @@
       <ul class="unstyled nav nav-simple">
         <li class="nav-item"><a href="#stats-private" data-toggle="tab">{{ _('Privates Datasets') }}</a></li>
 				<li class="nav-item"><a href="#stats-records-by-type" data-toggle="tab">{{ _('# records by type') }}</a></li>
+				<li class="nav-item"><a href="#stats-records-missing-spatial-range" data-toggle="tab">{{ _('Records missing spatial range') }}</a></li>
       </ul>
     </nav>
   </section>
