@@ -40,6 +40,18 @@ class Stats(object):
     return res_pkgs
 
   @classmethod
+  def private_packages_by_type(cls, limit=10000):
+
+    s = """SELECT count(package.id), package.type FROM package
+           WHERE package.private = true
+           GROUP BY package.type
+           LIMIT %(limit)s""" % {'limit': limit}
+
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(pkg_count, pkg_type) for pkg_count, pkg_type in res_ids]
+    return res_pkgs
+
+  @classmethod
   def records_by_type(cls, limit=10000):
     package = table('package')
 

@@ -31,6 +31,30 @@
       {% endif %}
     </section>
 
+		<section id="stats-private-by-type" class="module-content tab-content">
+      <h2>{{ _('Private Datasets by type') }}</h2>
+      {% if c.private_packages_by_type %}
+        <table class="table table-chunky table-bordered table-striped">
+          <thead>
+            <tr>
+							<th>{{ _('Type') }}</th>
+							<th>{{ _('Count') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for pkg_count, pkg_type in c.private_packages_by_type %}
+              <tr py:for="pkg_type in c.private_packages_by_type">
+								<td>{{ h.link_to(pkg_type, h.url_for(controller='package', type=pkg_type, action='search')) }}</td>
+								<td>{{ pkg_count }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="empty">{{ _('No private datasets') }}</p>
+      {% endif %}
+    </section>
+
 		<section id="stats-records-by-type" class="module-content tab-content">
       <h2>{{ _('Records by type') }}</h2>
       {% if c.records_by_type %}
@@ -159,8 +183,9 @@
     <h2 class="module-heading"><i class="icon-bar-chart icon-medium"></i> {{ _('Statistics Menu') }}</h2>
     <nav data-module="stats-nav">
       <ul class="unstyled nav nav-simple">
-        <li class="nav-item"><a href="#stats-private" data-toggle="tab">{{ _('Privates Datasets') }}</a></li>
-				<li class="nav-item"><a href="#stats-records-by-type" data-toggle="tab">{{ _('# records by type') }}</a></li>
+        <li class="nav-item"><a href="#stats-private" data-toggle="tab">{{ _('Private record') }}</a></li>
+				<li class="nav-item"><a href="#stats-private-by-type" data-toggle="tab">{{ _('Private records by type') }}</a></li>
+				<li class="nav-item"><a href="#stats-records-by-type" data-toggle="tab">{{ _('# Records by type') }}</a></li>
 				<li class="nav-item"><a href="#stats-records-missing-spatial-range" data-toggle="tab">{{ _('Records missing spatial range') }}</a></li>
 				<li class="nav-item"><a href="#stats-datasets-missing-mandatory-fields" data-toggle="tab">{{ _('Datasets missing mandatory fields') }}</a></li>
 				<li class="nav-item"><a href="#stats-library-records-missing-mandatory-fields" data-toggle="tab">{{ _('Library records missing mandatory fields') }}</a></li>
