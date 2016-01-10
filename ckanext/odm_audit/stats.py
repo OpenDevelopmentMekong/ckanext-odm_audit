@@ -30,9 +30,10 @@ class Stats(object):
   def private_packages(cls, limit=10000):
     package = table('package')
 
-    s = select([package.c.id, package.c.type], from_obj=[package]).\
-        where(package.c.private == True).\
-        limit(limit)
+    s = """SELECT p.id as pkg_id, p.type as pkg_type FROM package p
+           WHERE p.private = true
+           ORDER BY p.metadata_modified DESC
+           LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
     res_pkgs = [(model.Session.query(model.Package).get(
