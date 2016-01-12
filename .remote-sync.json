@@ -1,0 +1,11 @@
+{
+  "uploadOnSave": true,
+  "hostname": "192.168.33.10",
+  "target": "/home/vagrant/.virtualenvs/ckan/src/ckanext-odm_audit/",
+  "ignore": [
+    ".git/**"
+  ],
+  "username": "vagrant",
+  "password": "vagrant",
+  "transport": "scp"
+}

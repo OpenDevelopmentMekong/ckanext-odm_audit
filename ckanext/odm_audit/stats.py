@@ -74,7 +74,6 @@ class Stats(object):
             JOIN package_extra pe ON p.id = pe.package_id
             and pe.key = 'odm_spatial_range'
            )
-           GROUP BY package.id
            LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
