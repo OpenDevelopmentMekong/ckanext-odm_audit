@@ -143,6 +143,7 @@
             <tr>
               <th>{{ _('Record') }}</th>
 							<th>{{ _('Type') }}</th>
+              <th>{{ _('Private') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -150,6 +151,7 @@
               <tr py:for="package in c.private_packages">
                 <td>{{ h.link_to(package.title or package.name, h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}</td>
 								<td>{{ package.type }}</td>
+                <td>{{ package.private }}</td>
               </tr>
             {% endfor %}
           </tbody>
