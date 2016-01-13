@@ -28,6 +28,7 @@ class AuditController(BaseController):
       c.laws_records_missing_mandatory_fields = stats.laws_records_missing_mandatory_fields()
       c.records_not_migrated = stats.records_not_migrated()
       c.library_records_not_migrated = stats.library_records_not_migrated()
+      c.laws_records_not_migrated = stats.laws_records_not_migrated()
 
       # Used in new CKAN templates gives more control to the templates for formatting.
       c.raw_packages_by_week = []

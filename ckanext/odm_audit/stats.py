@@ -188,7 +188,24 @@ class Stats(object):
   def library_records_not_migrated(cls, limit=10000):
 
     s = """SELECT p.id FROM package p
-           WHERE p.type = 'library_recor'
+           WHERE p.type = 'library_record'
+           AND p.id NOT IN (
+              SELECT pe.package_id FROM package_extra pe
+              WHERE key = 'title_translated'
+            )
+           ORDER BY p.metadata_modified DESC
+           LIMIT %(limit)s""" % {'limit': limit}
+
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(model.Session.query(model.Package).get(
+        unicode(pkg_id[0]))) for pkg_id in res_ids]
+    return res_pkgs
+
+  @classmethod
+  def laws_records_not_migrated(cls, limit=10000):
+
+    s = """SELECT p.id FROM package p
+           WHERE p.type = 'laws_record'
            AND p.id NOT IN (
               SELECT pe.package_id FROM package_extra pe
               WHERE key = 'title_translated'

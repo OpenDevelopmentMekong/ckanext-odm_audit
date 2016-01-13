@@ -243,7 +243,7 @@
     </section>
 
     <section id="stats-records-not-migrated" class="module-content tab-content">
-      <h2>{{ _('Records not migrated') }}</h2>
+      <h2>{{ _('Normal datasets not migrated') }}</h2>
       {% if c.records_not_migrated %}
 			<h3>{{c.records_not_migrated | length}} {{ _(' entries') }}</h3>
         <table class="table table-chunky table-bordered table-striped">
@@ -266,33 +266,6 @@
         </table>
       {% else %}
         <p class="empty">{{ _('All records migrated') }}</p>
-      {% endif %}
-    </section>
-
-    <section id="stats-datasets-not-migrated" class="module-content tab-content">
-      <h2>{{ _('Normal datasets not migrated') }}</h2>
-      {% if c.datasets_not_migrated %}
-			<h3>{{c.datasets_not_migrated | length}} {{ _(' entries') }}</h3>
-        <table class="table table-chunky table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>{{ _('Record') }}</th>
-							<th>{{ _('Type') }}</th>
-              <th>{{ _('Private') }}</th>
-            </tr>
-          </thead>
-          <tbody>
-          	{% for package in c.datasets_not_migrated %}
-              <tr py:for="package in c.private_packages">
-                <td>{{ h.link_to(package.title or package.name, h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}</td>
-								<td>{{ package.type }}</td>
-                <td>{{ package.private }}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      {% else %}
-        <p class="empty">{{ _('All datasets migrated') }}</p>
       {% endif %}
     </section>
 
@@ -371,8 +344,7 @@
   			<li class="nav-item"><a href="#stats-datasets-missing-mandatory-fields" data-toggle="tab">{{ _('Datasets missing mandatory fields') }}</a></li>
   			<li class="nav-item"><a href="#stats-library-records-missing-mandatory-fields" data-toggle="tab">{{ _('Library records missing mandatory fields') }}</a></li>
   			<li class="nav-item"><a href="#stats-laws-records-missing-mandatory-fields" data-toggle="tab">{{ _('Laws records missing mandatory fields') }}</a></li>
-        <li class="nav-item"><a href="#stats-records-not-migrated" data-toggle="tab">{{ _('Records not migrated') }}</a></li>
-        <li class="nav-item"><a href="#stats-datasets-not-migrated" data-toggle="tab">{{ _('Normal datasets not migrated') }}</a></li>
+        <li class="nav-item"><a href="#stats-records-not-migrated" data-toggle="tab">{{ _('Normal datasets not migrated') }}</a></li>
         <li class="nav-item"><a href="#stats-library-records-not-migrated" data-toggle="tab">{{ _('Library records not migrated') }}</a></li>
         <li class="nav-item"><a href="#stats-laws-records-not-migrated" data-toggle="tab">{{ _('Laws records not migrated') }}</a></li>
       </ul>
