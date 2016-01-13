@@ -45,7 +45,6 @@ class Stats(object):
 
     s = """SELECT count(p.id) as pkg_count, p.type as pkg_type FROM package p
            WHERE p.private = true
-           ORDER BY p.metadata_modified DESC
            GROUP BY p.type
            LIMIT %(limit)s""" % {'limit': limit}
 
@@ -92,7 +91,6 @@ class Stats(object):
             JOIN package_extra pe ON p.id = pe.package_id
             and pe.key = 'odm_copyright'
            )
-           ORDER BY package.metadata_modified DESC
            GROUP BY package.id
            LIMIT %(limit)s""" % {'limit': limit}
 
@@ -164,7 +162,6 @@ class Stats(object):
           JOIN package_extra pe ON p.id = pe.package_id
           WHERE pe.key = 'odm_copyright'
           GROUP BY value
-          ORDER BY p.metadata_modified DESC
           LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
