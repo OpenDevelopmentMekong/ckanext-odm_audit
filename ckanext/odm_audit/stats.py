@@ -172,7 +172,8 @@ class Stats(object):
   def records_not_migrated(cls, limit=10000):
 
     s = """SELECT p.id FROM package p
-            WHERE p.id NOT IN (
+            WHERE p.type = 'dataset'
+            AND p.id NOT IN (
               SELECT pe.package_id FROM package_extra pe
               WHERE key = 'title_translated'
             )
