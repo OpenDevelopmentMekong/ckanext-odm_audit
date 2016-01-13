@@ -164,6 +164,21 @@ class Stats(object):
     res_pkgs = [(pkg_count, value) for pkg_count, value in res_ids]
     return res_pkgs
 
+  @classmethod
+  def records_not_migrated(cls, limit=10000):
+
+    s = """SELECT p.id FROM package p
+            WHERE p.id NOT IN (
+              SELECT pe.package_id FROM package_extra pe
+              WHERE key = 'title_translated'
+            )
+           LIMIT %(limit)s""" % {'limit': limit}
+
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(model.Session.query(model.Package).get(
+        unicode(pkg_id[0]))) for pkg_id in res_ids]
+    return res_pkgs
+
 class RevisionStats(object):
 
   @classmethod
