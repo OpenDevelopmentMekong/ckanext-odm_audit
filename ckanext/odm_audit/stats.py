@@ -45,6 +45,7 @@ class Stats(object):
 
     s = """SELECT count(p.id) as pkg_count, p.type as pkg_type FROM package p
            WHERE p.private = true
+           ORDER BY p.metadata_modified DESC
            GROUP BY p.type
            LIMIT %(limit)s""" % {'limit': limit}
 
@@ -74,6 +75,7 @@ class Stats(object):
             JOIN package_extra pe ON p.id = pe.package_id
             and pe.key = 'odm_spatial_range'
            )
+           ORDER BY package.metadata_modified DESC
            LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
@@ -90,6 +92,7 @@ class Stats(object):
             JOIN package_extra pe ON p.id = pe.package_id
             and pe.key = 'odm_copyright'
            )
+           ORDER BY package.metadata_modified DESC
            GROUP BY package.id
            LIMIT %(limit)s""" % {'limit': limit}
 
@@ -109,6 +112,7 @@ class Stats(object):
             WHERE p.version != ''
             and pe.key in ('odm_language','taxonomy','odm_date_created','odm_date_uploaded','odm_spatial_range','odm_process','odm_source')
            )
+           ORDER BY package.metadata_modified DESC
            LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
@@ -127,6 +131,7 @@ class Stats(object):
             WHERE p.version != ''
             and pe.key in ('odm_language','taxonomy','document_type','odm_date_uploaded','odm_spatial_range')
            )
+           ORDER BY package.metadata_modified DESC
            LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
@@ -144,6 +149,7 @@ class Stats(object):
             JOIN package_extra pe ON p.id = pe.package_id
             WHERE pe.key in ('odm_language','taxonomy','odm_document_type','odm_laws_status','odm_date_uploaded','odm_spatial_range')
            )
+           ORDER BY package.metadata_modified DESC
            LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
@@ -158,6 +164,7 @@ class Stats(object):
           JOIN package_extra pe ON p.id = pe.package_id
           WHERE pe.key = 'odm_copyright'
           GROUP BY value
+          ORDER BY p.metadata_modified DESC
           LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
@@ -172,6 +179,24 @@ class Stats(object):
               SELECT pe.package_id FROM package_extra pe
               WHERE key = 'title_translated'
             )
+           ORDER BY p.metadata_modified DESC
+           LIMIT %(limit)s""" % {'limit': limit}
+
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(model.Session.query(model.Package).get(
+        unicode(pkg_id[0]))) for pkg_id in res_ids]
+    return res_pkgs
+
+  @classmethod
+  def library_records_not_migrated(cls, limit=10000):
+
+    s = """SELECT p.id FROM package p
+           WHERE p.type = 'library_recor'
+           AND p.id NOT IN (
+              SELECT pe.package_id FROM package_extra pe
+              WHERE key = 'title_translated'
+            )
+           ORDER BY p.metadata_modified DESC
            LIMIT %(limit)s""" % {'limit': limit}
 
     res_ids = model.Session.execute(s).fetchall()
