@@ -9,7 +9,7 @@ wget https://github.com/OpenDevelopmentMekong/odm-automation/archive/master.zip 
 unzip /tmp/odm_automation.zip -d /tmp/
 
 echo "decrypting private key and adding it key to ssh agent"
-openssl aes-256-cbc -K $encrypted_38bb2f7e569a_key -iv $encrypted_38bb2f7e569a_iv -in odm_tech_rsa.enc -out ~/.ssh/id_rsa -d
+openssl aes-256-cbc -K $encrypted_984623f52971_key -iv $encrypted_984623f52971_iv -in odm_tech_rsa.enc -out ~/.ssh/id_rsa -d
 chmod 600 ~/.ssh/id_rsa
 eval `ssh-agent -s`
 ssh-add ~/.ssh/id_rsa
