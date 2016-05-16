@@ -1,20 +1,19 @@
 # 
 # Translators:
-# ChandaraKhun <chandara@opendevcam.net>, 2016
-# ODM Cambodia <cambodia@opendevmekong.net>, 2015
-# Pinkie, 2016
-# svutha <svutha.ewmi@gmail.com>, 2016
+# Linh Do <linh@nature.org.vn>, 2016
+# PanNature Vietnam <contact@nature.org.vn>, 2015
+# trang3019 <ng.thutrang.11@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_audit\n"
 "POT-Creation-Date: 2016-05-16 12:09+0200\n"
 "PO-Revision-Date: 2016-05-16 11:16+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
-"Language-Team: Khmer (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_audit/language/km/)\n"
+"Language-Team: Vietnamese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_audit/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: km\n"
+"Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.4\n"
 "X-Poedit-Basepath: ../ckanext\n"
@@ -73,7 +72,7 @@ msgstr ""
 
 #: odm_audit/templates/ckanext/audit/index.html:61
 msgid "Records by type"
-msgstr "កំណត់ត្រានានាចាត់តាមប្រភេទ"
+msgstr "Các bản ghi theo thể loại"
 
 #: odm_audit/templates/ckanext/audit/index.html:67
 msgid "Type of record"
@@ -90,7 +89,7 @@ msgstr ""
 
 #: odm_audit/templates/ckanext/audit/index.html:92
 msgid "Copyright"
-msgstr "សិទ្ធិ​អ្នក​និពន្ធ"
+msgstr "Bản quyền"
 
 #: odm_audit/templates/ckanext/audit/index.html:111
 #: odm_audit/templates/ckanext/audit/index.html:138
