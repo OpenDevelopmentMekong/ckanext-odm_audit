@@ -1,0 +1,190 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-odm_audit\n"
+"POT-Creation-Date: 2016-05-16 12:14+0200\n"
+"PO-Revision-Date: 2016-05-16 12:14+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: km\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Poedit-Basepath: ../ckanext\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-KeywordsList: _;__\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: odm_audit/controller.py:15
+msgid "Unauthorized to access audit scripts"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:11
+msgid "Private Datasets"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:13
+#: odm_audit/templates/ckanext/audit/index.html:38
+#: odm_audit/templates/ckanext/audit/index.html:63
+#: odm_audit/templates/ckanext/audit/index.html:88
+#: odm_audit/templates/ckanext/audit/index.html:113
+#: odm_audit/templates/ckanext/audit/index.html:140
+#: odm_audit/templates/ckanext/audit/index.html:167
+#: odm_audit/templates/ckanext/audit/index.html:194
+#: odm_audit/templates/ckanext/audit/index.html:221
+#: odm_audit/templates/ckanext/audit/index.html:248
+msgid " entries"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:17
+msgid "Dataset"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:18
+#: odm_audit/templates/ckanext/audit/index.html:42
+#: odm_audit/templates/ckanext/audit/index.html:118
+#: odm_audit/templates/ckanext/audit/index.html:145
+#: odm_audit/templates/ckanext/audit/index.html:172
+#: odm_audit/templates/ckanext/audit/index.html:199
+#: odm_audit/templates/ckanext/audit/index.html:226
+#: odm_audit/templates/ckanext/audit/index.html:253
+msgid "Type"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:31
+#: odm_audit/templates/ckanext/audit/index.html:56
+#: odm_audit/templates/ckanext/audit/index.html:81
+#: odm_audit/templates/ckanext/audit/index.html:106
+msgid "No private datasets"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:36
+msgid "Private Datasets by type"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:43
+msgid "Count"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:61
+msgid "Records by type"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:67
+msgid "Type of record"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:68
+#: odm_audit/templates/ckanext/audit/index.html:93
+msgid "Number"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:86
+msgid "Records by copyright"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:92
+msgid "Copyright"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:111
+#: odm_audit/templates/ckanext/audit/index.html:138
+msgid "Records mising spatial range"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:117
+#: odm_audit/templates/ckanext/audit/index.html:144
+#: odm_audit/templates/ckanext/audit/index.html:171
+#: odm_audit/templates/ckanext/audit/index.html:198
+#: odm_audit/templates/ckanext/audit/index.html:225
+#: odm_audit/templates/ckanext/audit/index.html:252
+msgid "Record"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:119
+#: odm_audit/templates/ckanext/audit/index.html:146
+#: odm_audit/templates/ckanext/audit/index.html:173
+#: odm_audit/templates/ckanext/audit/index.html:200
+#: odm_audit/templates/ckanext/audit/index.html:227
+#: odm_audit/templates/ckanext/audit/index.html:254
+msgid "Private"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:133
+#: odm_audit/templates/ckanext/audit/index.html:160
+msgid "No datasets missing odm_spatial_range field"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:165
+msgid "Datasets mising mandatory fields"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:187
+msgid "No datasets missing mandatory fields"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:192
+msgid "Library records mising mandatory fields"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:214
+msgid "No library records missing mandatory fields"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:219
+msgid "Laws records mising mandatory fields"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:241
+msgid "No laws records missing mandatory fields"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:246
+#: odm_audit/templates/ckanext/audit/index.html:289
+msgid "Records not migrated"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:268
+msgid "All records migrated"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:277
+msgid "Statistics Menu"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:280
+msgid "Private records sorted by latest modification date"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:281
+msgid "Private records by type"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:282
+msgid "# Records by type"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:283
+msgid "# Records by copyright"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:284
+msgid "Records missing spatial range"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:285
+msgid "Records missing copyright"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:286
+msgid "Datasets missing mandatory fields"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:287
+msgid "Library records missing mandatory fields"
+msgstr ""
+
+#: odm_audit/templates/ckanext/audit/index.html:288
+msgid "Laws records missing mandatory fields"
+msgstr ""
