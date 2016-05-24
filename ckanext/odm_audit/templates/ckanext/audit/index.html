@@ -243,7 +243,7 @@
     </section>
 
     <section id="stats-records-not-migrated" class="module-content tab-content">
-      <h2>{{ _('Normal datasets not migrated') }}</h2>
+      <h2>{{ _('Normal datasets not multilingual') }}</h2>
       {% if c.records_not_migrated %}
 			<h3>{{c.records_not_migrated | length}} {{ _(' entries') }}</h3>
         <table class="table table-chunky table-bordered table-striped">
@@ -265,12 +265,12 @@
           </tbody>
         </table>
       {% else %}
-        <p class="empty">{{ _('All records migrated') }}</p>
+        <p class="empty">{{ _('All records have multilingual capabilities') }}</p>
       {% endif %}
     </section>
 
     <section id="stats-library-records-not-migrated" class="module-content tab-content">
-      <h2>{{ _('Library records not migrated') }}</h2>
+      <h2>{{ _('Library records not multilingual') }}</h2>
       {% if c.library_records_not_migrated %}
 			<h3>{{c.library_records_not_migrated | length}} {{ _(' entries') }}</h3>
         <table class="table table-chunky table-bordered table-striped">
@@ -292,12 +292,12 @@
           </tbody>
         </table>
       {% else %}
-        <p class="empty">{{ _('All library records migrated') }}</p>
+        <p class="empty">{{ _('All library records have multilingual capabilities') }}</p>
       {% endif %}
     </section>
 
     <section id="stats-laws-records-not-migrated" class="module-content tab-content">
-      <h2>{{ _('Laws records not migrated') }}</h2>
+      <h2>{{ _('Laws records not multilingual') }}</h2>
       {% if c.laws_records_not_migrated %}
 			<h3>{{c.laws_records_not_migrated | length}} {{ _(' entries') }}</h3>
         <table class="table table-chunky table-bordered table-striped">
@@ -319,7 +319,7 @@
           </tbody>
         </table>
       {% else %}
-        <p class="empty">{{ _('All laws records migrated') }}</p>
+        <p class="empty">{{ _('All laws records have multilingual capabilities') }}</p>
       {% endif %}
     </section>
 
@@ -344,9 +344,9 @@
   			<li class="nav-item"><a href="#stats-datasets-missing-mandatory-fields" data-toggle="tab">{{ _('Datasets missing mandatory fields') }}</a></li>
   			<li class="nav-item"><a href="#stats-library-records-missing-mandatory-fields" data-toggle="tab">{{ _('Library records missing mandatory fields') }}</a></li>
   			<li class="nav-item"><a href="#stats-laws-records-missing-mandatory-fields" data-toggle="tab">{{ _('Laws records missing mandatory fields') }}</a></li>
-        <li class="nav-item"><a href="#stats-records-not-migrated" data-toggle="tab">{{ _('Normal datasets not migrated') }}</a></li>
-        <li class="nav-item"><a href="#stats-library-records-not-migrated" data-toggle="tab">{{ _('Library records not migrated') }}</a></li>
-        <li class="nav-item"><a href="#stats-laws-records-not-migrated" data-toggle="tab">{{ _('Laws records not migrated') }}</a></li>
+        <li class="nav-item"><a href="#stats-records-not-migrated" data-toggle="tab">{{ _('Normal datasets not multilingual') }}</a></li>
+        <li class="nav-item"><a href="#stats-library-records-not-migrated" data-toggle="tab">{{ _('Library records not multilingual') }}</a></li>
+        <li class="nav-item"><a href="#stats-laws-records-not-migrated" data-toggle="tab">{{ _('Laws records not multilingual') }}</a></li>
       </ul>
     </nav>
   </section>
