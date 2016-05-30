@@ -323,6 +323,31 @@
       {% endif %}
     </section>
 
+    <section id="stats-dataset-count-tags" class="module-content tab-content">
+      <h2>{{ _('Datasets by topics') }}</h2>
+      {% if c.dataset_count_tags %}
+			<h3>{{c.dataset_count_tags | length}} {{ _(' entries') }}</h3>
+        <table class="table table-chunky table-bordered table-striped">
+          <thead>
+            <tr>
+							<th>{{ _('Topic') }}</th>
+              <th>{{ _('Number') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+          	{% for tag_name, count in c.dataset_count_tags %}
+              <tr py:for="tag in c.dataset_count_tags">
+                <td>{{ h.link_to(tag_name, h.url_for(controller='package', action='search', extras_taxonomy=tag_name)) }}</td>
+								<td>{{ count }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="empty">{{ _('All laws records have multilingual capabilities') }}</p>
+      {% endif %}
+    </section>
+
   </article>
 {% endblock %}
 
@@ -346,7 +371,7 @@
   			<li class="nav-item"><a href="#stats-laws-records-missing-mandatory-fields" data-toggle="tab">{{ _('Laws records missing mandatory fields') }}</a></li>
         <li class="nav-item"><a href="#stats-records-not-migrated" data-toggle="tab">{{ _('Normal datasets not multilingual') }}</a></li>
         <li class="nav-item"><a href="#stats-library-records-not-migrated" data-toggle="tab">{{ _('Library records not multilingual') }}</a></li>
-        <li class="nav-item"><a href="#stats-laws-records-not-migrated" data-toggle="tab">{{ _('Laws records not multilingual') }}</a></li>
+        <li class="nav-item"><a href="#stats-dataset-count-tags" data-toggle="tab">{{ _('Records by topic') }}</a></li><li class="nav-item"><a href="#stats-laws-records-not-migrated" data-toggle="tab">{{ _('Laws records not multilingual') }}</a></li>
       </ul>
     </nav>
   </section>

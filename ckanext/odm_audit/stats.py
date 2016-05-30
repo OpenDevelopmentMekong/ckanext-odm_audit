@@ -219,6 +219,19 @@ class Stats(object):
         unicode(pkg_id[0]))) for pkg_id in res_ids]
     return res_pkgs
 
+  @classmethod
+  def dataset_count_tags(cls, limit=10000):
+
+    s = """SELECT t.name, count(p.id) as count FROM package p
+            JOIN package_tag pt ON p.id = pt.package_id
+            JOIN tag t ON t.id = pt.tag_id
+            GROUP BY t.name
+            ORDER BY count DESC"""
+
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(tag_name, count) for tag_name, count in res_ids]
+    return res_pkgs
+
 class RevisionStats(object):
 
   @classmethod
