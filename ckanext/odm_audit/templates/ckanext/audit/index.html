@@ -348,6 +348,31 @@
       {% endif %}
     </section>
 
+    <section id="stats-dataset-open-issues" class="module-content tab-content">
+      <h2>{{ _('Datasets with open issues') }}</h2>
+      {% if c.dataset_with_open_issues %}
+			<h3>{{c.dataset_with_open_issues | length}} {{ _(' entries') }}</h3>
+        <table class="table table-chunky table-bordered table-striped">
+          <thead>
+            <tr>
+							<th>{{ _('Dataset') }}</th>
+              <th>{{ _('Number of open issues') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+          	{% for package, count in c.dataset_with_open_issues %}
+              <tr py:for="package, count in c.dataset_with_open_issues">
+                <td>{{ h.link_to(package.title or package.name, h.url_for(controller='package', type=package.type, action='read', id=package.name)) }}</td>
+								<td>{{ count }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="empty">{{ _('No record with open issues') }}</p>
+      {% endif %}
+    </section>
+
   </article>
 {% endblock %}
 
@@ -371,7 +396,8 @@
   			<li class="nav-item"><a href="#stats-laws-records-missing-mandatory-fields" data-toggle="tab">{{ _('Laws records missing mandatory fields') }}</a></li>
         <li class="nav-item"><a href="#stats-records-not-migrated" data-toggle="tab">{{ _('Normal datasets not multilingual') }}</a></li>
         <li class="nav-item"><a href="#stats-library-records-not-migrated" data-toggle="tab">{{ _('Library records not multilingual') }}</a></li>
-        <li class="nav-item"><a href="#stats-dataset-count-tags" data-toggle="tab">{{ _('Records by topic') }}</a></li><li class="nav-item"><a href="#stats-laws-records-not-migrated" data-toggle="tab">{{ _('Laws records not multilingual') }}</a></li>
+        <li class="nav-item"><a href="#stats-dataset-count-tags" data-toggle="tab">{{ _('Records by topic') }}</a></li>
+        <li class="nav-item"><a href="#stats-dataset-open-issues" data-toggle="tab">{{ _('Records with open issues') }}</a></li>
       </ul>
     </nav>
   </section>
