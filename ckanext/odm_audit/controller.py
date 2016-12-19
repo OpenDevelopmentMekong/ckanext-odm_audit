@@ -29,6 +29,8 @@ class AuditController(BaseController):
       c.records_not_migrated = stats.records_not_migrated()
       c.library_records_not_migrated = stats.library_records_not_migrated()
       c.laws_records_not_migrated = stats.laws_records_not_migrated()
+      c.dataset_count_tags = stats.dataset_count_tags()
+      c.dataset_with_open_issues = stats.dataset_with_open_issues()
 
       # Used in new CKAN templates gives more control to the templates for formatting.
       c.raw_packages_by_week = []

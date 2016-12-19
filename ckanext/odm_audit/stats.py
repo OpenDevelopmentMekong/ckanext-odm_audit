@@ -219,6 +219,33 @@ class Stats(object):
         unicode(pkg_id[0]))) for pkg_id in res_ids]
     return res_pkgs
 
+  @classmethod
+  def dataset_count_tags(cls, limit=10000):
+
+    s = """SELECT t.name, count(p.id) as count FROM package p
+            JOIN package_tag pt ON p.id = pt.package_id
+            JOIN tag t ON t.id = pt.tag_id
+            GROUP BY t.name
+            ORDER BY count DESC"""
+
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(tag_name, count) for tag_name, count in res_ids]
+    return res_pkgs
+
+  @classmethod
+  def dataset_with_open_issues(cls, limit=10000):
+
+    s = """SELECT p.id as pkg_id, count(i.id) as count FROM package p
+            JOIN issue i ON p.id = i.dataset_id
+            WHERE i.status = 'open'
+            GROUP BY p.id
+            ORDER BY count DESC"""
+
+    res_ids = model.Session.execute(s).fetchall()
+    res_pkgs = [(model.Session.query(model.Package).get(
+        unicode(pkg_id)),count) for pkg_id,count in res_ids]
+    return res_pkgs
+
 class RevisionStats(object):
 
   @classmethod
