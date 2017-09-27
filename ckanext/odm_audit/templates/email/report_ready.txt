@@ -1,0 +1,3 @@
+Dear $admin_username,
+
+The daily report is available on $report_link to download.
